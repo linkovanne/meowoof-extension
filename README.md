@@ -1,2 +1,2 @@
 # linguix-extension
-test case
+test chrome extension case
