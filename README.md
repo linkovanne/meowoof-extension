@@ -1,0 +1,2 @@
+# linguix-extension
+test case
