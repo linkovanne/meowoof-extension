@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Linguix Chrome Extension",
-  "description": "linguix-extension as test case",
+  "description": "linguix-extension-js as test case",
   "version": "1.00",
   "author": "linkovanne",
   "background": {
@@ -9,5 +9,12 @@
   },
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'; script-src-elem 'self' 'unsafe-inline' https://music.yandex.ru/;"
-  }
+  },
+  "action": {
+    "default_popup": "frontend/popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ]
 }

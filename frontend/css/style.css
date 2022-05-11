@@ -1,0 +1,114 @@
+@import "checkbox.css";
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+mark {
+    z-index: 10000;
+    cursor: pointer;
+}
+
+.meowoof {
+    width: 400px;
+    padding: 12px 20px 20px;
+    margin: 0 auto;
+}
+
+.meowoof__header {
+    padding: 0 20px 18px;
+    display: flex;
+    font-size: 18px;
+    line-height: 140%;
+    color: #000000;
+}
+
+.meowoof__header img {
+    margin-right: 8px;
+    max-width: 15px;
+    max-height: 26px;
+}
+
+.meowoof__settings {
+    padding: 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.meowoof__settings-item {
+    font-size: 15px;
+    line-height: 200%;
+    color: #000000;
+}
+
+.meowoof__settings-item + .meowoof__settings-item {
+    margin-top: 10px;
+}
+
+.meowoof-selector {
+    padding: 20px 20px 24px;
+    background: #694EF3;
+    border-radius: 12px;
+}
+
+.meowoof-selector__desc {
+    max-width: 257px;
+    margin-bottom: 18px;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.meowoof-selector__desc span {
+    color: #48D99E;
+}
+
+.meowoof-selector__switcher {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.meowoof-selector__switcher-item {
+    font-size: 15px;
+    line-height: 200%;
+    color: #FFFFFF;
+}
+
+.meowoof-selector__switcher-item + .meowoof-selector__switcher-item {
+    margin-top: 10px;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 270px;
+    background: #FFFFFF;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 15%);
+    border-radius: 12px;
+
+    background: top center / cover no-repeat;
+}
+
+.popup__header {
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    line-height: 1.4;
+    color: #000000;
+    background: #FFFFFF;
+    border-radius: 12px 12px 0 0;
+}
+
+.popup__header p {
+    margin: 0;
+}
