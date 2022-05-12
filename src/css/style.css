@@ -1,7 +1,9 @@
 @import "checkbox.css";
-
-body {
-    font-family: 'Nunito Sans', sans-serif;
+:root {
+    --white: #FFFFFF;
+    --black: #000000;
+    --green: #48D99E;
+    --purple: #694EF3;
 }
 
 mark {
@@ -10,19 +12,36 @@ mark {
 }
 
 .meowoof {
+    z-index: 2147483647;
+    position: fixed;
+    right: 0;
+    top: 0;
     width: 400px;
     padding: 12px 20px 20px;
     margin: 0 auto;
+    font-family: 'Nunito Sans', sans-serif;
+    background: var(--white);
 }
 
 .meowoof__header {
+    position: relative;
     padding: 0 20px 18px;
     display: flex;
     font-size: 18px;
     line-height: 140%;
-    color: #000000;
+    color: var(--black);
 }
 
+.meowoof__header:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-right: 8px;
+    width: 15px;
+    height: 26px;
+    background: url("../assets/pencil.svg") center / contain no-repeat;
+}
 .meowoof__header img {
     margin-right: 8px;
     max-width: 15px;
@@ -39,7 +58,7 @@ mark {
 .meowoof__settings-item {
     font-size: 15px;
     line-height: 200%;
-    color: #000000;
+    color: var(--black);
 }
 
 .meowoof__settings-item + .meowoof__settings-item {
@@ -48,7 +67,7 @@ mark {
 
 .meowoof-selector {
     padding: 20px 20px 24px;
-    background: #694EF3;
+    background: var(--purple);
     border-radius: 12px;
 }
 
@@ -60,11 +79,11 @@ mark {
     line-height: 20px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: #FFFFFF;
+    color: var(--white);
 }
 
 .meowoof-selector__desc span {
-    color: #48D99E;
+    color: var(--green);
 }
 
 .meowoof-selector__switcher {
@@ -76,7 +95,7 @@ mark {
 .meowoof-selector__switcher-item {
     font-size: 15px;
     line-height: 200%;
-    color: #FFFFFF;
+    color: var(--white);
 }
 
 .meowoof-selector__switcher-item + .meowoof-selector__switcher-item {
@@ -88,13 +107,18 @@ mark {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    overflow: hidden;
     width: 400px;
     height: 270px;
-    background: #FFFFFF;
+    background: var(--white);
     box-shadow: 0 5px 15px rgb(0 0 0 / 15%);
     border-radius: 12px;
+}
 
-    background: top center / cover no-repeat;
+.popup img {
+    object-fit: contain;
+    height: calc(100% - 50px);
+    width: 100%;
 }
 
 .popup__header {
@@ -104,8 +128,8 @@ mark {
     align-items: center;
     font-size: 18px;
     line-height: 1.4;
-    color: #000000;
-    background: #FFFFFF;
+    color: var(--black);
+    background: var(--white);
     border-radius: 12px 12px 0 0;
 }
 

@@ -8,11 +8,9 @@
     "service_worker": "extension.js"
   },
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'; script-src-elem 'self' 'unsafe-inline' https://music.yandex.ru/;"
+    "extension_pages": "script-src 'self'; object-src 'self'; script-src-elem 'self' 'unsafe-inline'"
   },
-  "action": {
-    "default_popup": "/src/popup.html"
-  },
+  "action": {},
   "permissions": [
     "activeTab",
     "scripting"
@@ -21,8 +19,10 @@
     {
       "run_at": "document_idle",
       "matches": ["<all_urls>"],
-      "css": ["/src/css/style.css"],
-      "js": ["/src/js/index.js"]
+      "css": [
+        "/src/css/checkbox.css",
+        "/src/css/style.css"
+      ]
     }
   ]
 }
