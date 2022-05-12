@@ -1,0 +1,110 @@
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  background: #E5E5E5;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+.meowoof-welcome {
+  position: relative;
+}
+
+.meowoof-welcome__icon {
+  position: absolute;
+  left: 60px;
+  top: 60px;
+  max-width: 30px;
+}
+
+.meowoof-welcome__wrap {
+  max-width: 1140px;
+  padding: 170px 15px 0;
+  margin: 0 auto;
+}
+
+.meowoof-welcome__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.meowoof-welcome__descr {
+  padding-top: 106px;
+  flex: 0 40%;
+}
+
+.meowoof-welcome__title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 54px;
+}
+
+
+.meowoof-welcome__title span {
+  display: block;
+  color: #48D99E;
+}
+
+.meowoof-welcome__subtitle {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 24px;
+  line-height: 1.33;
+  color: #000000;
+}
+
+.meowoof-welcome__card {
+  padding: 148px 95px 142px;
+  flex: 0 51%;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.meowoof-welcome__switcher-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 140%;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.meowoof-welcome__switcher-item span {
+  margin-right: 4px;
+  white-space: nowrap;
+}
+
+.meowoof-welcome__switcher-item + .meowoof-welcome__switcher-item {
+  margin-top: 110px;
+}
+
+.meowoof-welcome__action {
+  margin-top: 100px;
+  text-align: right;
+}
+
+.ui-button {
+  width: 227.97px;
+  height: 70px;
+  padding-right: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  font-family: 'Avenir', sans-serif;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: 0.00398086px;
+  color: #FFFFFF;
+
+  background: url('../assets/btn_bgr.svg') center / contain no-repeat;
+  border-radius: 10px;
+  border: none;
+}

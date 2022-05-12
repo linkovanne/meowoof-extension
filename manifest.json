@@ -5,16 +5,24 @@
   "version": "1.00",
   "author": "linkovanne",
   "background": {
-    "service_worker": "/extension/extension.js"
+    "service_worker": "extension.js"
   },
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'; script-src-elem 'self' 'unsafe-inline' https://music.yandex.ru/;"
   },
   "action": {
-    "default_popup": "frontend/popup.html"
+    "default_popup": "/src/popup.html"
   },
   "permissions": [
     "activeTab",
     "scripting"
+  ],
+  "content_scripts": [
+    {
+      "run_at": "document_idle",
+      "matches": ["<all_urls>"],
+      "css": ["/src/css/style.css"],
+      "js": ["/src/js/index.js"]
+    }
   ]
 }
