@@ -1,3 +1,6 @@
+isOpen = !!document.body.querySelector('.meowoof');
+sessionStorage.setItem('meowoofIsOpen', JSON.stringify(isOpen));
+
 setTimeout(() => {
     const MARKED_PETS = [];
     const APP_OPTIONS = document.querySelectorAll('.app-option');
@@ -10,8 +13,12 @@ setTimeout(() => {
         extEn: false,
         pageEn: false,
     }
-    const context = window.document.querySelector('body');
-    const instance = new Mark(context);
+    const CONTEXT = window.document.querySelector('body');
+    const INSTANCE = new Mark(CONTEXT);
+
+    let isAllEnabled = false;
+    let isAllSelected = false;
+    let isNoneSelected = true;
 
     const popupClickListener = () => {
         MARKED_PETS.forEach(el => el.addEventListener('click', e => {
@@ -26,42 +33,47 @@ setTimeout(() => {
 
     PET_OPTIONS.forEach((el) => el.addEventListener('change', () => {
         BELOVED_PETS[el.value] = el.checked;
+
+        isAllSelected = Object.values(BELOVED_PETS).filter(value => value === false).length === 0;
+        isNoneSelected = Object.values(BELOVED_PETS).filter(value => value === true).length === 0;
+
         searchPet();
+
+        if (isAllEnabled) {
+            replacePet();
+        }
     }));
 
     APP_OPTIONS.forEach((el) => el.addEventListener('change', () => {
         APP_SETTINGS[el.value] = el.checked;
-        replacePet();
+
+        isAllEnabled = Object.values(APP_SETTINGS).filter(value => value === false).length === 0;
+
+        if (isAllEnabled) {
+            replacePet();
+        }
     }));
 
     const searchPet = () => {
-        const isAllSelected = Object.values(BELOVED_PETS).filter(value => value === false).length === 0;
-        const isNoneSelected = Object.values(BELOVED_PETS).filter(value => value === true).length === 0;
-
         if (isAllSelected || isNoneSelected) {
-            instance.unmark();
+            INSTANCE.unmark();
             return;
         }
 
         const pet = Object.keys(BELOVED_PETS).find(key => BELOVED_PETS[key] === true);
 
-        instance.mark(pet);
+        INSTANCE.mark(pet);
 
         MARKED_PETS.push(...document.querySelectorAll('mark'));
         popupClickListener();
     }
 
     const replacePet = () => {
-        const isAllEnabled = Object.values(APP_SETTINGS).filter(value => value === false).length === 0;
-        const isAllSelected = Object.values(BELOVED_PETS).filter(value => value === false).length === 0;
-        const isNoneSelected = Object.values(BELOVED_PETS).filter(value => value === true).length === 0;
         const pet = Object.keys(BELOVED_PETS).find(key => BELOVED_PETS[key] === true);
 
-        searchPet();
-
-        if(isAllEnabled && !isAllSelected && !isNoneSelected) {
+        if (isAllEnabled && !isAllSelected && !isNoneSelected) {
             MARKED_PETS.forEach(el => el.innerHTML = pet === 'cat' ? 'dog' : 'cat');
-            instance.unmark();
+            INSTANCE.unmark();
         }
     }
 
@@ -90,10 +102,10 @@ setTimeout(() => {
     }
 
     const createPopup = (pet, petImg) => {
-        const div = document.createElement('div');
+        const POPUP_LAYOUT = document.createElement('div');
 
-        div.className = 'popup';
-        div.innerHTML = `
+        POPUP_LAYOUT.className = 'popup';
+        POPUP_LAYOUT.innerHTML = `
             <div class="popup__header">
                 <p><strong>Look!</strong> It’s a ${pet}!</p>
                 <a href="#" class="popup__close">
@@ -105,15 +117,18 @@ setTimeout(() => {
             </div>
             <img src="${petImg}" alt="${pet}">
         `
-        document.querySelector('.meowoof').appendChild(div);
+        document.querySelector('.meowoof').appendChild(POPUP_LAYOUT);
 
         destroyPopup();
     }
 }, 10)
 
-const meowoofLayout = document.createElement("div");
-meowoofLayout.className = 'meowoof';
-meowoofLayout.innerHTML = `
+if (isOpen) {
+    document.body.querySelector('.meowoof').remove();
+} else {
+    const MEOWOOF_LAYOUT = document.createElement('div');
+    MEOWOOF_LAYOUT.className = 'meowoof';
+    MEOWOOF_LAYOUT.innerHTML = `
     <div class="meowoof__header">
         <img src="https://oshi.at/QPnM/wNKa.png" alt="">
         Meo<strong>woof</strong>
@@ -145,7 +160,7 @@ meowoofLayout.innerHTML = `
             </div>
         </div>
     </div>
-`
+    `
 
-my_div = document.querySelector("body");
-document.body.appendChild(meowoofLayout);
+    document.body.appendChild(MEOWOOF_LAYOUT);
+}

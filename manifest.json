@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Linguix Chrome Extension",
-  "description": "linguix-extension-js as test case",
+  "name": "Meowoof Chrome Extension",
+  "description": "meowoof-extension-js as test case",
   "version": "1.00",
   "author": "linkovanne",
   "background": {
