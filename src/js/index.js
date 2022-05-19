@@ -21,7 +21,7 @@ setTimeout(() => {
     let isNoneSelected = true;
 
     const popupClickListener = () => {
-        MARKED_PETS.forEach(el => el.addEventListener('click', e => {
+        MARKED_PETS.forEach((el) => el.addEventListener('click', (e) => {
             const selectedPet = Object.keys(BELOVED_PETS).find(key => BELOVED_PETS[key] === true);
 
             e.preventDefault();
@@ -34,8 +34,8 @@ setTimeout(() => {
     PET_OPTIONS.forEach((el) => el.addEventListener('change', () => {
         BELOVED_PETS[el.value] = el.checked;
 
-        isAllSelected = Object.values(BELOVED_PETS).filter(value => value === false).length === 0;
-        isNoneSelected = Object.values(BELOVED_PETS).filter(value => value === true).length === 0;
+        isAllSelected = Object.values(BELOVED_PETS).filter((value) => value === false).length === 0;
+        isNoneSelected = Object.values(BELOVED_PETS).filter((value) => value === true).length === 0;
 
         searchPet();
 
@@ -47,7 +47,7 @@ setTimeout(() => {
     APP_OPTIONS.forEach((el) => el.addEventListener('change', () => {
         APP_SETTINGS[el.value] = el.checked;
 
-        isAllEnabled = Object.values(APP_SETTINGS).filter(value => value === false).length === 0;
+        isAllEnabled = Object.values(APP_SETTINGS).filter((value) => value === false).length === 0;
 
         if (isAllEnabled) {
             replacePet();
@@ -60,7 +60,7 @@ setTimeout(() => {
             return;
         }
 
-        const pet = Object.keys(BELOVED_PETS).find(key => BELOVED_PETS[key] === true);
+        const pet = Object.keys(BELOVED_PETS).find((key) => BELOVED_PETS[key] === true);
 
         INSTANCE.mark(pet);
 
@@ -69,22 +69,22 @@ setTimeout(() => {
     }
 
     const replacePet = () => {
-        const pet = Object.keys(BELOVED_PETS).find(key => BELOVED_PETS[key] === true);
+        const pet = Object.keys(BELOVED_PETS).find((key) => BELOVED_PETS[key] === true);
 
         if (isAllEnabled && !isAllSelected && !isNoneSelected) {
-            MARKED_PETS.forEach(el => el.innerHTML = pet === 'cat' ? 'dog' : 'cat');
+            MARKED_PETS.forEach((el) => el.innerHTML = pet === 'cat' ? 'dog' : 'cat');
             INSTANCE.unmark();
         }
     }
 
-    const preparePopupToOpen = pet => {
+    const preparePopupToOpen = (pet) => {
         const reqUrl = pet === 'cat'
             ? 'https://api.thecatapi.com/v1/images/search'
             : 'https://dog.ceo/api/breeds/image/random';
 
         fetch(reqUrl)
             .then((response) => response.json())
-            .then(response => {
+            .then((response) => {
                 const imgUrl = pet === 'cat' ? response[0].url : response.message;
                 if (!imgUrl) {
                     return;
