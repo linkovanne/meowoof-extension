@@ -12,7 +12,7 @@ setTimeout(() => {
     const APP_SETTINGS = {
         extEn: false,
         pageEn: false,
-    }
+    };
     const CONTEXT = window.document.querySelector('body');
     const INSTANCE = new Mark(CONTEXT);
 
@@ -29,7 +29,7 @@ setTimeout(() => {
 
             preparePopupToOpen(selectedPet);
         }));
-    };
+    }
 
     PET_OPTIONS.forEach((el) => el.addEventListener('change', () => {
         BELOVED_PETS[el.value] = el.checked;
@@ -57,15 +57,14 @@ setTimeout(() => {
     const searchPet = () => {
         if (isAllSelected || isNoneSelected) {
             INSTANCE.unmark();
-            return;
+        } else {
+            const pet = Object.keys(BELOVED_PETS).find((key) => BELOVED_PETS[key] === true);
+
+            INSTANCE.mark(pet);
+
+            MARKED_PETS.push(...document.querySelectorAll('mark'));
+            popupClickListener();
         }
-
-        const pet = Object.keys(BELOVED_PETS).find((key) => BELOVED_PETS[key] === true);
-
-        INSTANCE.mark(pet);
-
-        MARKED_PETS.push(...document.querySelectorAll('mark'));
-        popupClickListener();
     }
 
     const replacePet = () => {
@@ -78,19 +77,25 @@ setTimeout(() => {
     }
 
     const preparePopupToOpen = (pet) => {
-        const reqUrl = pet === 'cat'
+        const isPetCat = pet === 'cat';
+
+        // TODO: can also do this instead of the ternary operator
+        // const reqUrl = {
+        //     cat: 'https://api.thecatapi.com/v1/images/search',
+        //     dog: 'https://dog.ceo/api/breeds/image/random',
+        // };
+        // fetch(reqUrl[pet]);
+
+        const reqUrl = isPetCat
             ? 'https://api.thecatapi.com/v1/images/search'
             : 'https://dog.ceo/api/breeds/image/random';
 
         fetch(reqUrl)
             .then((response) => response.json())
             .then((response) => {
-                const imgUrl = pet === 'cat' ? response[0].url : response.message;
-                if (!imgUrl) {
-                    return;
-                }
-                createPopup(pet, imgUrl);
-            })
+                const imgUrl = isPetCat ? response[0].url : response.message;
+                imgUrl ? createPopup(pet, imgUrl) : null;
+            });
     }
 
     const destroyPopup = () => {
@@ -98,7 +103,7 @@ setTimeout(() => {
 
         popupClose.addEventListener('click', () => {
             popupClose.closest('.popup').remove();
-        })
+        });
     }
 
     const createPopup = (pet, petImg) => {
@@ -116,7 +121,7 @@ setTimeout(() => {
                 </a>
             </div>
             <img src="${petImg}" alt="${pet}">
-        `
+        `;
         document.querySelector('.meowoof').appendChild(POPUP_LAYOUT);
 
         destroyPopup();
@@ -129,38 +134,38 @@ if (isOpen) {
     const MEOWOOF_LAYOUT = document.createElement('div');
     MEOWOOF_LAYOUT.className = 'meowoof';
     MEOWOOF_LAYOUT.innerHTML = `
-    <div class="meowoof__header">
-        <img src="https://oshi.at/QPnM/wNKa.png" alt="File not found">
-        Meo<strong>woof</strong>
-    </div>
+        <div class="meowoof__header">
+            <img src="https://oshi.at/QPnM/wNKa.png" alt="File not found">
+            Meo<strong>woof</strong>
+        </div>
 
-    <div class="meowoof__settings">
-        <div class="ui-checkbox meowoof__settings-item">
-            <input id="extEn" value="extEn" class="ui-checkbox__input app-option" type="checkbox">
-            <label for="extEn" class="ui-checkbox__label">Enable the <strong>extension</strong></label>
-        </div>
-        <div class="ui-checkbox meowoof__settings-item">
-            <input id="pageEn" value="pageEn" class="ui-checkbox__input app-option" type="checkbox">
-            <label for="pageEn" class="ui-checkbox__label">Enable on <strong>stackowerflow.com</strong></label>
-        </div>
-    </div>
-
-    <div class="meowoof-selector">
-        <div class="meowoof-selector__desc">
-            Select the pets you like most — or <span>all of them!</span>
-        </div>
-        <div class="meowoof-selector__switcher">
-            <div class="ui-checkbox meowoof-selector__switcher-item">
-                <input id="cat" class="ui-checkbox__input pet-option" type="checkbox" value="cat">
-                <label for="cat" class="ui-checkbox__label">I love cats</label>
+        <div class="meowoof__settings">
+            <div class="ui-checkbox meowoof__settings-item">
+                <input id="extEn" value="extEn" class="ui-checkbox__input app-option" type="checkbox">
+                <label for="extEn" class="ui-checkbox__label">Enable the <strong>extension</strong></label>
             </div>
-            <div class="ui-checkbox meowoof-selector__switcher-item">
-                <input id="dog" class="ui-checkbox__input pet-option" type="checkbox" value="dog">
-                <label for="dog" class="ui-checkbox__label">I love dogs</label>
+            <div class="ui-checkbox meowoof__settings-item">
+                <input id="pageEn" value="pageEn" class="ui-checkbox__input app-option" type="checkbox">
+                <label for="pageEn" class="ui-checkbox__label">Enable on <strong>stackowerflow.com</strong></label>
             </div>
         </div>
-    </div>
-    `
+
+        <div class="meowoof-selector">
+            <div class="meowoof-selector__desc">
+                Select the pets you like most — or <span>all of them!</span>
+            </div>
+            <div class="meowoof-selector__switcher">
+                <div class="ui-checkbox meowoof-selector__switcher-item">
+                    <input id="cat" class="ui-checkbox__input pet-option" type="checkbox" value="cat">
+                    <label for="cat" class="ui-checkbox__label">I love cats</label>
+                </div>
+                <div class="ui-checkbox meowoof-selector__switcher-item">
+                    <input id="dog" class="ui-checkbox__input pet-option" type="checkbox" value="dog">
+                    <label for="dog" class="ui-checkbox__label">I love dogs</label>
+                </div>
+            </div>
+        </div>
+    `;
 
     document.body.appendChild(MEOWOOF_LAYOUT);
 }
