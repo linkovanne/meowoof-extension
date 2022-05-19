@@ -1,6 +1,3 @@
-.ui-checkbox {
-}
-
 .ui-checkbox__input {
     position: absolute;
     z-index: -1;
@@ -20,7 +17,7 @@
     top: 0;
     width: 40px;
     height: 20px;
-    background: #C0C0C0;
+    background: var(--grey);
     border-radius: 30px;
 }
 
@@ -31,13 +28,13 @@
     right: 23px;
     width: 13px;
     height: 13px;
-    background: #FFFFFF;
+    background: var(--white);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     border-radius: 50%;
 }
 
 .ui-checkbox__input:checked + .ui-checkbox__label:before {
-    background: #48D99E;
+    background: var(--green);
 }
 
 .ui-checkbox__input:checked + .ui-checkbox__label:after {
