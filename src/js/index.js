@@ -130,7 +130,7 @@ if (isOpen) {
     MEOWOOF_LAYOUT.className = 'meowoof';
     MEOWOOF_LAYOUT.innerHTML = `
     <div class="meowoof__header">
-        <img src="https://oshi.at/QPnM/wNKa.png" alt="">
+        <img src="https://oshi.at/QPnM/wNKa.png" alt="File not found">
         Meo<strong>woof</strong>
     </div>
 
