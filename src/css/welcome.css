@@ -1,4 +1,5 @@
 :root {
+  /* TODO: it turns out different types of :root variables? */
   --white: #FFFFFF;
   --beige: #E5E5E5;
   --black: #000000;
@@ -52,6 +53,7 @@ body * {
 
 
 .meowoof-welcome__title span {
+  /* TODO: here I would not make the inline element a block */
   display: block;
   color: var(--green);
 }
