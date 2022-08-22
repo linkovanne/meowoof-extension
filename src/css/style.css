@@ -1,5 +1,10 @@
-@import '_colors.css';
-@import 'checkbox.css';
+@import "checkbox.css";
+:root {
+    --white: #FFFFFF;
+    --black: #000000;
+    --green: #48D99E;
+    --purple: #694EF3;
+}
 
 mark {
     z-index: 10000;
@@ -35,7 +40,7 @@ mark {
     margin-right: 8px;
     width: 15px;
     height: 26px;
-    background: url('../assets/pencil.svg') center / contain no-repeat;
+    background: url("../assets/pencil.svg") center / contain no-repeat;
 }
 .meowoof__header img {
     margin-right: 8px;
